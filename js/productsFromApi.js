@@ -13,7 +13,9 @@ class Product {
     }
 }
 
-const products = [];
+const productsCardsContainer = document.querySelector('.products')
+const productsList = [];
+const productQuantity = 2
 
 function sendHTTPRequest(method, url, data) {
     return fetch(url, {
@@ -31,10 +33,13 @@ function sendHTTPRequest(method, url, data) {
 }
 
 async function fetchProducts() {
-  const allRawProducts = await sendHTTPRequest("GET", "https://api.escuelajs.co/api/v1/products")
+  const allRawProducts = await sendHTTPRequest("GET", "https://fakestoreapi.com/products")
   for(const rawProduct of allRawProducts) {
-    const product = new Product(rawProduct.id, rawProduct.title, rawProduct.price, rawProduct.images[0], rawProduct.description, rawProduct.category);
-    products.push(product);
+    const product = new Product(id=rawProduct.id, name=rawProduct.title, price=rawProduct.price, image=rawProduct.image, description=rawProduct.description, category=rawProduct.category);
+    productsList.push(product);    
   }
+  console.log(productsList);
+  return productsList;
 }
+
 
